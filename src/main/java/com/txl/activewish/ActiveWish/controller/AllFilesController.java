@@ -13,25 +13,25 @@ public class AllFilesController {
 	/**
 	 * @Title: launchLoad 
 	 * @Description: TODO(启动全文件检测程序) 
-	 * @param     输入类型 
+	 * @param
 	 * @return void    返回类型 
 	 * @throws
 	 */
 	public void launchAllFiles(){
 		LogUtil.initLogContext().info("The AllFilesController service is in the process of controlled!");
 		
-		while(true){
+		//while(true){
 			try {
 				LogUtil.initLogContext().info("The AllFilesController service is waiting for the next controller!");
 				//执行频率
-				Thread.sleep(100000);
+				//Thread.sleep(100000);
 				
-				//主动提醒获取数据主线程启动
+				//全文件检测主线程启动
 				new AllFilesHandler();
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		//}
 	}
 }

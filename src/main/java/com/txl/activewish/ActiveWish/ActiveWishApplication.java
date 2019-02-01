@@ -51,5 +51,4 @@ public class ActiveWishApplication {
         HttpMessageConverter<?> converter = fastConverter;
         return new HttpMessageConverters(converter);
     }
-
 }

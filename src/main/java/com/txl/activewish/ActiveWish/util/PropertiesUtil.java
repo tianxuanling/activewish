@@ -3,6 +3,7 @@ package com.txl.activewish.ActiveWish.util;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -38,7 +39,7 @@ public class PropertiesUtil {
 			String path = "config/config.properties";
 			InputStream in = new BufferedInputStream (new FileInputStream(path));
 			
-			prop.load(in);
+			prop.load(new InputStreamReader(in, "utf-8"));
 			this.MYSQL_SERVER_IP = prop.getProperty("mysql.server.ip");
 			this.MYSQL_SERVER_PORT = Integer.valueOf(prop.getProperty("mysql.server.port"));
 			this.MYSQL_SERVER_DATABASE = prop.getProperty("mysql.server.database");

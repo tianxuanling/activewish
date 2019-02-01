@@ -15,16 +15,16 @@ import com.txl.activewish.ActiveWish.util.LogUtil;
 public class AllFilesServiceImpl implements AllFilesService {
 	@Autowired
 	private FileRepository fileRepository;
-	
+
 	private ActiveWishDao activeWishDao = new ActiveWishDao();
-	
+
 	private long sum = 1;
 
 	@Override
 	public void doAllFiles(String filePath) {
 		// TODO Auto-generated method stub
 		try {
-
+			LogUtil.initLogContext().info(filePath);
 			File file = new File(filePath);
 			if (!file.isDirectory()) {
 				LogUtil.initLogContext().info("配置的主监控目录必须是文件夹，当前配置为文件，程序挂起!");
@@ -32,13 +32,13 @@ public class AllFilesServiceImpl implements AllFilesService {
 			} else {
 				String[] filelist = file.list();
 				for (int i = 0; i < filelist.length; i++) {
-					File readfile = new File(filePath + "\\" + filelist[i]);
+					File readfile = new File(filePath + "/" + filelist[i]);
 					if (!readfile.isDirectory()) {
 						LogUtil.initLogContext().info(sum + readfile.getAbsolutePath());
-						ActiveWishFile activeWishFile = fileRepository.findByPathName(readfile.getAbsolutePath());
-						if(activeWishFile == null) {
+//						ActiveWishFile activeWishFile = fileRepository.findByPathName(readfile.getAbsolutePath());
+//						if(activeWishFile == null) {
 							activeWishDao.createFile(readfile);
-						}
+//						}
 						sum++;
 					} else {
 						doAllFiles(readfile.getAbsolutePath());
