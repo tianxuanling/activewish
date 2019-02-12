@@ -15,6 +15,7 @@ import com.txl.activewish.ActiveWish.database.DataBase;
 import com.txl.activewish.ActiveWish.database.impl.MySql;
 import com.txl.activewish.ActiveWish.util.DateUtil;
 import com.txl.activewish.ActiveWish.util.LogUtil;
+import com.txl.activewish.ActiveWish.util.PropertiesUtil;
 import com.txl.activewish.ActiveWish.util.UUIDUtil;
 
 /**
@@ -514,17 +515,18 @@ public class ActiveWishDao {
 		// TODO Auto-generated method stub
 		try {
 			// 封装sql
-			String sql = "insert into am_monitor_currentfile (id, name, pathname, size, creatercode,creatername,createtime) values (?,?,?,?,?,?,?)";
+			String sql = "insert into am_monitor_currentfile (id, name, pathname, url, size, creatercode,creatername,createtime) values (?,?,?,?,?,?,?,?)";
 
 			conn = db.getConn();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, UUIDUtil.generateUuid());
 			pstmt.setString(2, file.getName());
 			pstmt.setString(3, file.getAbsolutePath());
-			pstmt.setString(4, String.valueOf(file.length()));
-			pstmt.setString(5, "system");
+			pstmt.setString(4, PropertiesUtil.AM_HTTP_URL + file.getAbsolutePath());
+			pstmt.setString(5, String.valueOf(file.length()));
 			pstmt.setString(6, "system");
-			pstmt.setTimestamp(7, new Timestamp(new Date().getTime()));
+			pstmt.setString(7, "system");
+			pstmt.setTimestamp(8, new Timestamp(new Date().getTime()));
 			pstmt.addBatch();
 
 			LogUtil.initLogContext().info(

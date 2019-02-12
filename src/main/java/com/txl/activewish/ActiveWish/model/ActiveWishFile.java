@@ -26,6 +26,10 @@ public class ActiveWishFile implements Serializable {
 	@Column(nullable = false,length=2000)
 	private String pathname;
 	
+	// URL
+	@Column(nullable = false,length=2000)
+	private String url;
+	
 	// 文件大小(byte)
 	@Column(length=50)
 	private String size;
@@ -96,5 +100,13 @@ public class ActiveWishFile implements Serializable {
 
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
