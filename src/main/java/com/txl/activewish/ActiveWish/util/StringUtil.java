@@ -35,4 +35,17 @@ public class StringUtil {
 		}
 		return tempSequence;
 	}
+	
+	public static String escapeSpecialWord(String str) {
+		if(str != null&& !str.isEmpty()){
+			str = str.replaceAll("\\+", "%2B");
+			str = str.replaceAll(" ", "%20");
+			str = str.replaceAll("\\?", "%3F");
+			str = str.replaceAll("\\#", "%23");
+			str = str.replaceAll("\\$", "%26");
+			str = str.replaceAll("\\=", "%3D");
+			return str;
+		}
+		return null;
+	}
 }
