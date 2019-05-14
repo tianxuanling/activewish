@@ -16,6 +16,7 @@ import com.txl.activewish.ActiveWish.database.impl.MySql;
 import com.txl.activewish.ActiveWish.util.DateUtil;
 import com.txl.activewish.ActiveWish.util.LogUtil;
 import com.txl.activewish.ActiveWish.util.PropertiesUtil;
+import com.txl.activewish.ActiveWish.util.StringUtil;
 import com.txl.activewish.ActiveWish.util.UUIDUtil;
 
 /**
@@ -522,7 +523,7 @@ public class ActiveWishDao {
 			pstmt.setString(1, UUIDUtil.generateUuid());
 			pstmt.setString(2, file.getName());
 			pstmt.setString(3, file.getAbsolutePath());
-			pstmt.setString(4, PropertiesUtil.AM_HTTP_URL + file.getAbsolutePath());
+			pstmt.setString(4, PropertiesUtil.AM_HTTP_URL + StringUtil.escapeSpecialWord(file.getAbsolutePath()));
 			pstmt.setString(5, String.valueOf(file.length()));
 			pstmt.setString(6, "system");
 			pstmt.setString(7, "system");
