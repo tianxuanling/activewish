@@ -26,6 +26,7 @@ public class PropertiesUtil {
 	
 	// 需要监控的根目录
 	public static String AM_MONITOR_ROOT_DIRECTORY = null;
+	public static String AM_MONITOR_ROOT1_DIRECTORY = null;
 	
 	// nginx服务器地址
 	public static String AM_HTTP_URL = null;
@@ -50,6 +51,7 @@ public class PropertiesUtil {
 			this.MYSQL_SERVER_PASSWORD = prop.getProperty("mysql.server.password");
 			
 			this.AM_MONITOR_ROOT_DIRECTORY = prop.getProperty("am.monitor.root.directory");
+			this.AM_MONITOR_ROOT1_DIRECTORY = prop.getProperty("am.monitor.root1.directory");
 			
 			this.AM_HTTP_URL = prop.getProperty("am.http.url");
 			in.close();
