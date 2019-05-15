@@ -31,6 +31,10 @@ public class ActiveWishApplication {
 		m.monitor(PropertiesUtil.AM_MONITOR_ROOT_DIRECTORY, new FileListener());
 		m.start();
 		
+		FileMonitor m1 = new FileMonitor(5000);
+		m1.monitor(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY, new FileListener());
+		m1.start();
+		
 		// 启动全量文件检测
 		//AllFilesController allFilesController = new AllFilesController();
 		//allFilesController.launchAllFiles();
