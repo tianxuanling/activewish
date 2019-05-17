@@ -581,4 +581,157 @@ public class ActiveWishDao {
 			db.closeConn(conn);
 		}
 	}
+	
+	/**
+	 * 
+	 * @Title: queryFileByPathName 
+	 * @Description: TODO(通过绝对路径查询相应数据库的数据)
+	 * @param @param pathName
+	 * @param @return    输入类型 
+	 * @return List<String[]>    返回类型 
+	 * @throws
+	 */
+	public List<String[]> queryFileByPathName(String pathName) {
+		// TODO Auto-generated method stub
+		try {
+			List<String[]> list = new ArrayList<String[]>();
+			// 封装sql
+			String sql = "select * from am_monitor_currentfile t where t.pathname = '" + pathName + "'";
+
+			conn = db.getConn();
+			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, pathName);
+			
+			rs = pstmt.executeQuery(sql);
+
+			while (rs.next()) {
+				String[] listStr = new String[8];
+				listStr[0] = rs.getString("id");
+				listStr[1] = rs.getString("name");
+				listStr[2] = rs.getString("pathname");
+				listStr[3] = rs.getString("url");
+				listStr[4] = rs.getString("size");
+				listStr[5] = rs.getString("creatercode");
+				listStr[6] = rs.getString("creatername");
+				listStr[7] = rs.getString("createtime");
+				list.add(listStr);
+			}
+
+//			LogUtil.initLogContext().info("queryFileByPathName:" + sql);
+			return list;
+		} catch (SQLException e) {
+			LogUtil.initLogContext().error(e.toString());
+			return null;
+		} finally {
+			db.closeRs(rs);
+			db.closeStmt(pstmt);
+			db.closeConn(conn);
+		}
+	}
+	
+	/**
+	 * 
+	 * @Title: queryFilesByLimit
+	 * @Description: TODO(分页查询文件数据)
+	 * @param @param start 开始位置
+	 * @param @param end  结束位置
+	 * @param @return    输入类型
+	 * @return List<String[]>    返回类型
+	 * @throws
+	 */
+	public List<String[]> queryFilesByLimit(int start,int end) {
+		// TODO Auto-generated method stub
+		try {
+			List<String[]> list = new ArrayList<String[]>();
+			// 封装sql
+			String sql = "select t.id,t.pathname from am_monitor_currentfile t where 1=1 order by t.createtime asc limit "+ start +","+ end;
+
+			conn = db.getConn();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(sql);
+
+			while (rs.next()) {
+				String[] listStr = new String[2];
+				listStr[0] = rs.getString("id");
+				listStr[1] = rs.getString("pathname");
+				list.add(listStr);
+			}
+
+//			LogUtil.initLogContext().info("queryFileByPathName:" + sql);
+			return list;
+		} catch (SQLException e) {
+			LogUtil.initLogContext().error(e.toString());
+			return null;
+		} finally {
+			db.closeRs(rs);
+			db.closeStmt(pstmt);
+			db.closeConn(conn);
+		}
+	}
+	
+	/**
+	 * 
+	 * @Title: queryAllFilesCount
+	 * @Description: TODO(查询全部文件数量)
+	 * @param @return    输入类型
+	 * @return Integer    返回类型
+	 * @throws
+	 */
+	public Integer queryAllFilesCount() {
+		// TODO Auto-generated method stub
+		try {
+			List<Integer> list = new ArrayList<Integer>();
+			// 封装sql
+			String sql = "select count(1) as count from am_monitor_currentfile";
+
+			conn = db.getConn();
+			stmt = db.getStmt(conn);
+			rs = db.getResultSet(stmt, sql);
+
+			while (rs.next()) {
+				list.add(rs.getInt("count"));
+			}
+
+//			LogUtil.initLogContext().info("查询全部文件数量:" + stmt.toString());
+			return list.get(0);
+		} catch (SQLException e) {
+			LogUtil.initLogContext().error(e.toString());
+			return null;
+		} finally {
+			db.closeRs(rs);
+			db.closeStmt(stmt);
+			db.closeConn(conn);
+		}
+	}
+	
+	/**
+	 * 
+	 * @Title: deleteFileByPathName
+	 * @Description: TODO(根据id删除相关数据)
+	 * @param @param id
+	 * @return void    返回类型
+	 * @throws
+	 */
+	public void deleteFileById(String id) {
+		// TODO Auto-generated method stub
+		try {
+			// 封装sql
+			String sql = "delete from am_monitor_currentfile where id = ?";
+
+			conn = db.getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.addBatch();
+
+			LogUtil.initLogContext().info("删除am_monitor_currentfile表:" + pstmt.toString());
+			pstmt.executeBatch(); // 执行sql
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			LogUtil.initLogContext().error(e.toString());
+		} finally {
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
+	}
 }

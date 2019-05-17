@@ -16,6 +16,7 @@ public class ProcessAllFiles {
 	public static void doAllFiles(){
 		PropertiesUtil.initPropertiesContext();
 		AllFilesService allFilesService = new AllFilesServiceImpl();
-		allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+		allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT_DIRECTORY);
+		allFilesService.doAllFilesReverse();
 	}
 }

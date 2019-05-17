@@ -36,8 +36,8 @@ public class ActiveWishApplication {
 		m1.start();
 		
 		// 启动全量文件检测
-		//AllFilesController allFilesController = new AllFilesController();
-		//allFilesController.launchAllFiles();
+		AllFilesController allFilesController = new AllFilesController();
+		allFilesController.launchAllFiles();
 	}
 	
 	@Bean

@@ -24,7 +24,7 @@ public class MySql extends DataBase {
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://" + PropertiesUtil.MYSQL_SERVER_IP + ":" + PropertiesUtil.MYSQL_SERVER_PORT + "/" + PropertiesUtil.MYSQL_SERVER_DATABASE + "?user=" + PropertiesUtil.MYSQL_SERVER_USERNAME + "&password=" + PropertiesUtil.MYSQL_SERVER_PASSWORD + "&characterEncoding=utf8");
+			conn = DriverManager.getConnection("jdbc:mysql://" + PropertiesUtil.MYSQL_SERVER_IP + ":" + PropertiesUtil.MYSQL_SERVER_PORT + "/" + PropertiesUtil.MYSQL_SERVER_DATABASE + "?user=" + PropertiesUtil.MYSQL_SERVER_USERNAME + "&password=" + PropertiesUtil.MYSQL_SERVER_PASSWORD + "&characterEncoding=utf8&useSSL=false");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

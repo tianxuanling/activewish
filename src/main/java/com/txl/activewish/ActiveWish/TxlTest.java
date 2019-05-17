@@ -19,9 +19,14 @@ public class TxlTest {
 		PropertiesUtil.initPropertiesContext();
 		AllFilesService allFilesService = new AllFilesServiceImpl();
 		allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+		allFilesService.doAllFilesReverse();
 	}
 	
 	public static void test2() {
 		System.out.println(StringUtil.escapeSpecialWord("我是 中国人+?#$="));
+	}
+	
+	public static void test3() {
+		System.out.println("E:\\tianxuanling\\source-code\\ideaWorkBench\\activewish\\files\\Gitlab介绍5.pptx".replaceAll("\\\\","\\\\"));
 	}
 }

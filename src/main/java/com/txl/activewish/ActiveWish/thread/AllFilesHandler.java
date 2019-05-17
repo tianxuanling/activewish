@@ -36,6 +36,8 @@ public class AllFilesHandler implements Runnable{
 		LogUtil.initLogContext().info("全文件检测开始!");
 
 		allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT_DIRECTORY);
+		allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+		allFilesService.doAllFilesReverse();
 		
 		LogUtil.initLogContext().info("全文件检测完成!");
 	}

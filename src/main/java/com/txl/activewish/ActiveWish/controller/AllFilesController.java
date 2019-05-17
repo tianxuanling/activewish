@@ -20,11 +20,11 @@ public class AllFilesController {
 	public void launchAllFiles(){
 		LogUtil.initLogContext().info("The AllFilesController service is in the process of controlled!");
 		
-		//while(true){
+		while(true){
 			try {
 				LogUtil.initLogContext().info("The AllFilesController service is waiting for the next controller!");
 				//执行频率
-				//Thread.sleep(100000);
+				Thread.sleep(10000);
 				
 				//全文件检测主线程启动
 				new AllFilesHandler();
@@ -32,6 +32,6 @@ public class AllFilesController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		//}
+		}
 	}
 }
