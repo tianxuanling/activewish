@@ -20,11 +20,14 @@ public class AllFilesController {
 	public void launchAllFiles(){
 		LogUtil.initLogContext().info("The AllFilesController service is in the process of controlled!");
 		
+		//全文件检测主线程启动
+		new AllFilesHandler();
+		
 		while(true){
 			try {
 				LogUtil.initLogContext().info("The AllFilesController service is waiting for the next controller!");
 				//执行频率
-				Thread.sleep(10000);
+				Thread.sleep(86400000);
 				
 				//全文件检测主线程启动
 				new AllFilesHandler();
