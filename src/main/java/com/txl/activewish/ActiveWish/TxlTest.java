@@ -12,7 +12,7 @@ public class TxlTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		test1();
+		test2();
 	}
 
 	public static void test1(){
@@ -23,7 +23,7 @@ public class TxlTest {
 	}
 	
 	public static void test2() {
-		System.out.println(StringUtil.escapeSpecialWord("我是 中国人+?#$="));
+		System.out.println(StringUtil.processURLCharacter("我是 中国人'"));
 	}
 	
 	public static void test3() {

@@ -522,8 +522,8 @@ public class ActiveWishDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, UUIDUtil.generateUuid());
 			pstmt.setString(2, file.getName());
-			pstmt.setString(3, file.getAbsolutePath());
-			pstmt.setString(4, PropertiesUtil.AM_HTTP_URL + StringUtil.escapeSpecialWord(file.getAbsolutePath()));
+			pstmt.setString(3, StringUtil.processDataBaseCharacter(file.getAbsolutePath()));
+			pstmt.setString(4, PropertiesUtil.AM_HTTP_URL + StringUtil.processURLCharacter(file.getAbsolutePath()));
 			pstmt.setString(5, String.valueOf(file.length()));
 			pstmt.setString(6, "system");
 			pstmt.setString(7, "system");

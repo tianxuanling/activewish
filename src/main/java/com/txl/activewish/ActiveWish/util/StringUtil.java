@@ -36,7 +36,16 @@ public class StringUtil {
 		return tempSequence;
 	}
 	
-	public static String escapeSpecialWord(String str) {
+	/**
+	 * 
+	 * @Title: escapeSpecialWord
+	 * @Description: TODO(URL特殊字符处理)
+	 * @param @param str
+	 * @param @return    输入类型
+	 * @return String    返回类型
+	 * @throws
+	 */
+	public static String processURLCharacter(String str) {
 		if(str != null&& !str.isEmpty()){
 			str = str.replaceAll("\\+", "%2B");
 			str = str.replaceAll(" ", "%20");
@@ -44,8 +53,23 @@ public class StringUtil {
 			str = str.replaceAll("\\#", "%23");
 			str = str.replaceAll("\\$", "%26");
 			str = str.replaceAll("\\=", "%3D");
+			str = str.replaceAll("'", "%27");
 			return str;
 		}
 		return null;
+	}
+	
+	/**
+	 * 
+	 * @Title: processDataBaseCharacter
+	 * @Description: TODO(处理数据库特殊字符)
+	 * @param @param str
+	 * @param @return    输入类型
+	 * @return String    返回类型
+	 * @throws
+	 */
+	public static String processDataBaseCharacter(String str) {
+		str = str.replaceAll("'", "\\\\\'");
+		return str;
 	}
 }
