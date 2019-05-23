@@ -1,7 +1,14 @@
 package com.txl.activewish.ActiveWish.controller;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import com.txl.activewish.ActiveWish.service.AllFilesService;
+import com.txl.activewish.ActiveWish.service.impl.AllFilesServiceImpl;
 import com.txl.activewish.ActiveWish.thread.AllFilesHandler;
 import com.txl.activewish.ActiveWish.util.LogUtil;
+import com.txl.activewish.ActiveWish.util.PropertiesUtil;
 
 /**
  * @ClassName: ActiveMessageController
@@ -17,11 +24,26 @@ public class AllFilesController {
 	 * @return void    返回类型 
 	 * @throws
 	 */
-	public void launchAllFiles(){
+	public static void launchAllFiles(){
 		LogUtil.initLogContext().info("The AllFilesController service is in the process of controlled!");
 		
-		//全文件检测主线程启动
-		new AllFilesHandler();
+		Runnable runnable = new Runnable() {
+			private AllFilesService allFilesService = new AllFilesServiceImpl();
+			
+			public void run() {
+				LogUtil.initLogContext().info("全文件检测开始!");
+
+				allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT_DIRECTORY);
+				allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+				allFilesService.doAllFilesReverse();
+				
+				LogUtil.initLogContext().info("全文件检测完成!");
+			}
+		};
+		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+		// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
+		service.scheduleAtFixedRate(runnable, 10, 1, TimeUnit.SECONDS);
+		
 		
 		while(true){
 			try {
@@ -36,5 +58,8 @@ public class AllFilesController {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
 	}
 }
