@@ -42,9 +42,4 @@ public class ActiveWishApplication {
         HttpMessageConverter<?> converter = fastConverter;
         return new HttpMessageConverters(converter);
     }
-	
-	@PostConstruct
-	void started() {
-	    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-	}
 }
