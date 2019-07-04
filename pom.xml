@@ -99,6 +99,13 @@
             <artifactId>spring-plugin-metadata</artifactId>
              <version>1.2.0.RELEASE</version><!--$NO-MVN-MAN-VER$-->
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-clients</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

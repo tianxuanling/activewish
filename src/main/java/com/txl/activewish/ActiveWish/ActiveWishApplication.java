@@ -1,5 +1,9 @@
 package com.txl.activewish.ActiveWish;
 
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -11,8 +15,6 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.txl.activewish.ActiveWish.controller.LaunchController;
-import com.txl.activewish.ActiveWish.util.LogUtil;
-import com.txl.activewish.ActiveWish.util.PropertiesUtil;
 
 @SpringBootApplication
 public class ActiveWishApplication {
@@ -40,4 +42,9 @@ public class ActiveWishApplication {
         HttpMessageConverter<?> converter = fastConverter;
         return new HttpMessageConverters(converter);
     }
+	
+	@PostConstruct
+	void started() {
+	    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
 }

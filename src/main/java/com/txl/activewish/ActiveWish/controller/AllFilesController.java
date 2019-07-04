@@ -44,7 +44,6 @@ public class AllFilesController {
 		// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
 		service.scheduleAtFixedRate(runnable, 10, 1, TimeUnit.SECONDS);
 		
-		
 		while(true){
 			try {
 				LogUtil.initLogContext().info("The AllFilesController service is waiting for the next controller!");
@@ -58,8 +57,5 @@ public class AllFilesController {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
 	}
 }
