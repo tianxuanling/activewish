@@ -42,20 +42,20 @@ public class AllFilesController {
 		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 		// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-		service.scheduleAtFixedRate(runnable, 10, 1, TimeUnit.SECONDS);
+		service.scheduleAtFixedRate(runnable, 0, 12, TimeUnit.HOURS);
 		
-		while(true){
-			try {
-				LogUtil.initLogContext().info("The AllFilesController service is waiting for the next controller!");
-				//执行频率
-				Thread.sleep(86400000);
-				
-				//全文件检测主线程启动
-				new AllFilesHandler();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+//		while(true){
+//			try {
+//				LogUtil.initLogContext().info("The AllFilesController service is waiting for the next controller!");
+//				//执行频率
+//				Thread.sleep(86400000);
+//				
+//				//全文件检测主线程启动
+//				new AllFilesHandler();
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 	}
 }

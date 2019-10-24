@@ -24,13 +24,37 @@ public class FileController {
 	@Autowired
 	private FileService fileService;
 
-	@ApiOperation(value = "根据工号或者图号查找文件", notes = "根据工号或者图号查找文件")
+	@ApiOperation(value = "根据工号或者图号搜索文件", notes = "根据工号或者图号搜索文件")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "workno", value = "工号", required = false, dataType = "String", defaultValue = ""),
 			@ApiImplicitParam(name = "chartno", value = "图号", required = false, dataType = "String", defaultValue = "") })
 	@RequestMapping(value = "/queryByName", method = RequestMethod.POST)
 	public Map queryFileByName(String workno, String chartno) {
-		List list = fileService.findByName(workno,chartno);
+		List list = fileService.queryByName(workno,chartno);
+		Map map = new HashMap();
+		map.put("datas", list);
+		return map;
+	}
+	
+	@ApiOperation(value = "根据工号或者图号搜索装箱清单", notes = "根据工号或者图号搜索装箱清单")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "workno", value = "工号", required = false, dataType = "String", defaultValue = ""),
+			@ApiImplicitParam(name = "chartno", value = "图号", required = false, dataType = "String", defaultValue = "") })
+	@RequestMapping(value = "/queryBoxListByWorknoOrChartno", method = RequestMethod.POST)
+	public Map queryBoxListByWorknoOrChartno(String workno, String chartno) {
+		List list = fileService.queryBoxListByWorknoOrChartno(workno,chartno);
+		Map map = new HashMap();
+		map.put("datas", list);
+		return map;
+	}
+	
+	@ApiOperation(value = "根据工号或者图号搜索唛头和标牌", notes = "根据工号或者图号搜索唛头和标牌")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "workno", value = "工号", required = false, dataType = "String", defaultValue = ""),
+			@ApiImplicitParam(name = "chartno", value = "图号", required = false, dataType = "String", defaultValue = "") })
+	@RequestMapping(value = "/queryMarkListByWorknoOrChartno", method = RequestMethod.POST)
+	public Map queryMarkListByWorknoOrChartno(String workno, String chartno) {
+		List list = fileService.queryMarkListByWorknoOrChartno(workno,chartno);
 		Map map = new HashMap();
 		map.put("datas", list);
 		return map;
