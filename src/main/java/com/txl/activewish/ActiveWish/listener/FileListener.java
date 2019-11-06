@@ -43,7 +43,7 @@ public class FileListener implements FileAlterationListener {
 	@Override
 	public void onFileChange(File file) {
 		LogUtil.initLogContext().info("onFileChange:" + file.getAbsolutePath());
-		//activeMessageDao.changeFile(file);
+		activeWishDao.changeFile(file);
 	}
 
 	@Override

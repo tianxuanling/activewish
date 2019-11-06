@@ -42,4 +42,13 @@ public interface FileService {
 	 * @return
 	 */
 	public List queryMarkListByWorknoOrChartno(String workno, String chartno);
+
+	/**
+	 * 查询装箱清单前limit条数据并按照文档修改时间排序
+	 * @param workno
+	 * @param chartno
+	 * @param limit
+	 * @return
+	 */
+	public List queryBoxListByLimit(String workno, String chartno, int limit);
 }

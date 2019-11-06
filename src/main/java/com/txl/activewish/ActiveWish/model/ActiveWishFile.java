@@ -45,6 +45,10 @@ public class ActiveWishFile implements Serializable {
 	// 创建时间
 	@Column(columnDefinition="timestamp")
 	private Date createtime;
+	
+	// 更新时间
+	@Column(columnDefinition="timestamp")
+	private Date updatetime;
 
 	public String getId() {
 		return id;
@@ -100,6 +104,14 @@ public class ActiveWishFile implements Serializable {
 
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
+	}
+
+	public Date getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
 	}
 
 	public String getUrl() {

@@ -516,7 +516,7 @@ public class ActiveWishDao {
 		// TODO Auto-generated method stub
 		try {
 			// 封装sql
-			String sql = "insert into am_monitor_currentfile (id, name, pathname, url, size, creatercode,creatername,createtime) values (?,?,?,?,?,?,?,?)";
+			String sql = "insert into am_monitor_currentfile (id, name, pathname, url, size, creatercode,creatername,createtime,updatetime) values (?,?,?,?,?,?,?,?,?)";
 
 			conn = db.getConn();
 			pstmt = conn.prepareStatement(sql);
@@ -528,6 +528,7 @@ public class ActiveWishDao {
 			pstmt.setString(6, "system");
 			pstmt.setString(7, "system");
 			pstmt.setTimestamp(8, new Timestamp(new Date().getTime()));
+			pstmt.setTimestamp(9, new Timestamp(new Date(file.lastModified()).getTime()));
 			pstmt.addBatch();
 
 			LogUtil.initLogContext().info(
@@ -551,6 +552,40 @@ public class ActiveWishDao {
 	 */
 	public void changeFile(File file) {
 		// TODO Auto-generated method stub
+		try {
+			String id = null;
+			// 封装sql
+			String sql_select = "select * from am_monitor_currentfile t where 1=1 and t.pathname=?";
+
+			conn = db.getConn();
+			pstmt = conn.prepareStatement(sql_select);
+			pstmt.setString(1, file.getAbsolutePath());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getString("id");
+			}
+			
+			if(id != null && !id.equals("")) {
+				// 封装sql
+				String sql_update = "update am_monitor_currentfile t set t.updatetime=? where t.id=?";
+
+				pstmt = conn.prepareStatement(sql_update);
+				
+				pstmt.setTimestamp(1, new Timestamp(new Date(file.lastModified()).getTime()));
+				pstmt.setString(2, id);
+
+				LogUtil.initLogContext().info("更新am_monitor_currentfile表:" + pstmt.toString());
+				pstmt.execute(); // 执行sql
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			LogUtil.initLogContext().error(e.toString());
+		} finally {
+			db.closeRs(rs);
+			db.closePstmt(pstmt);
+			db.closeConn(conn);
+		}
 	}
 
 	/**

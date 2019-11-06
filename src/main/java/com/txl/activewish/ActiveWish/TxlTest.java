@@ -1,5 +1,7 @@
 package com.txl.activewish.ActiveWish;
 
+import java.io.File;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
@@ -18,7 +20,7 @@ public class TxlTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		test5();
+		test6();
 	}
 
 	public static void test1(){
@@ -61,5 +63,10 @@ public class TxlTest {
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 		// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
 		service.scheduleAtFixedRate(runnable, 10, 1, TimeUnit.SECONDS);
+	}
+	
+	public static void test6() {
+		File f1 = new File("D:\\workbench\\eclipse-workbench\\activewish\\files\\我是中国人\\总体架构图.ppt");
+		System.out.println(new Date(f1.lastModified()).toLocaleString());
 	}
 }

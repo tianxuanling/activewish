@@ -2,6 +2,7 @@ package com.txl.activewish.ActiveWish.dao;
 
 import java.util.List;
 
+import javax.persistence.Access;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,4 +36,8 @@ public interface FileRepository extends JpaRepository<ActiveWishFile, Long> {
 	@Transactional
 	@Query("from ActiveWishFile t where t.name like %?1% and t.name like %?2% and t.pathname like %?3%")
 	public List queryMarkListByWorknoOrChartno(String workno, String chartno, String key);
+
+	@Transactional
+	@Query(value = "select * from am_monitor_currentfile t where t.name like %?1% and t.name like %?2% order by t.updatetime desc limit ?3", nativeQuery = true)
+	public List<ActiveWishFile> queryBoxListByLimit(String workno, String chartno, int limit, String key);
 }
