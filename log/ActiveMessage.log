@@ -6495,3 +6495,16 @@
 2019 十一月 07 01:49:42,803 INFO | The ActiveMessage service is end in controlled!
 2019 十一月 07 01:49:43,003 INFO | The ActiveMessage service is start in controlled!
 2019 十一月 07 01:49:43,010 INFO | The ActiveMessage service is end in controlled!
+2019 十一月 07 14:33:30,332 INFO | 关键配置文件加载成功!
+2019 十一月 07 14:33:30,368 INFO | The ActiveWish service is in controlled!
+2019 十一月 07 14:33:30,411 INFO | The AllFilesController service is in the process of controlled!
+2019 十一月 07 14:33:30,454 INFO | 全文件检测开始!
+2019 十一月 07 14:33:30,448 INFO | The ActiveMessage service is start in controlled!
+2019 十一月 07 14:33:30,448 INFO | The ActiveMessage service is start in controlled!
+2019 十一月 07 14:33:30,463 INFO | The ActiveMessage service is end in controlled!
+2019 十一月 07 14:33:30,474 INFO | The ActiveMessage service is end in controlled!
+2019 十一月 07 14:33:30,560 INFO | 全文件检测完成!
+2019 十一月 07 14:33:35,482 INFO | The ActiveMessage service is start in controlled!
+2019 十一月 07 14:33:35,485 INFO | The ActiveMessage service is start in controlled!
+2019 十一月 07 14:33:35,491 INFO | The ActiveMessage service is end in controlled!
+2019 十一月 07 14:33:35,493 INFO | The ActiveMessage service is end in controlled!
