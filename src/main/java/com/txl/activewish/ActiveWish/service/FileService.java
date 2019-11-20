@@ -51,4 +51,13 @@ public interface FileService {
 	 * @return
 	 */
 	public List queryBoxListByLimit(String workno, String chartno, int limit);
+
+	/**
+	 * 查询工艺院前limit条数据并按照文档修改时间排序
+	 * @param workno
+	 * @param chartno
+	 * @param limit
+	 * @return
+	 */
+	public List queryProcessListByLimit(String workno, String chartno, int limit);
 }

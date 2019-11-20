@@ -16,7 +16,7 @@ public class FileListener implements FileAlterationListener {
 	
 	@Override
 	public void onStart(FileAlterationObserver observer) {
-		LogUtil.initLogContext().info("The ActiveMessage service is start in controlled!");
+		LogUtil.initLogContext().info("The ActiveWish service is start in controlled!");
 	}
 
 	@Override
@@ -54,6 +54,6 @@ public class FileListener implements FileAlterationListener {
 
 	@Override
 	public void onStop(FileAlterationObserver observer) {
-		LogUtil.initLogContext().info("The ActiveMessage service is end in controlled!");
+		LogUtil.initLogContext().info("The ActiveWish service is end in controlled!");
 	}
 }

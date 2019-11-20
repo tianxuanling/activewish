@@ -37,6 +37,10 @@ public class LaunchController {
 			m1.monitor(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY, new FileListener());
 			m1.start();
 			
+			FileMonitor m2 = new FileMonitor(5000);
+			m2.monitor(PropertiesUtil.AM_MONITOR_ROOT2_DIRECTORY, new FileListener());
+			m2.start();
+			
 			// 启动全量文件检测
 			AllFilesController allFilesController = new AllFilesController();
 			allFilesController.launchAllFiles();

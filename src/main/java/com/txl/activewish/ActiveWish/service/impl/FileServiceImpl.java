@@ -84,8 +84,19 @@ public class FileServiceImpl implements FileService {
 		if (chartno == null) {
 			chartno = "";
 		}
-		return fileRepository.queryMarkListByWorknoOrChartno(workno, chartno,
-				PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+		return fileRepository.queryMarkListByWorknoOrChartno(workno, chartno, PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+	}
+
+	@Override
+	public List queryProcessListByLimit(String workno, String chartno, int limit) {
+		// TODO Auto-generated method stub
+		if (workno == null) {
+			workno = "";
+		}
+		if (chartno == null) {
+			chartno = "";
+		}
+		return fileRepository.queryProcessListByLimit(workno, chartno, limit, PropertiesUtil.AM_MONITOR_ROOT2_DIRECTORY);
 	}
 
 	@SuppressWarnings("rawtypes")

@@ -40,4 +40,8 @@ public interface FileRepository extends JpaRepository<ActiveWishFile, Long> {
 	@Transactional
 	@Query(value = "select * from am_monitor_currentfile t where t.name like %?1% and t.name like %?2% and t.pathname like %?4% order by t.updatetime desc limit ?3", nativeQuery = true)
 	public List<ActiveWishFile> queryBoxListByLimit(String workno, String chartno, int limit, String key);
+
+	@Transactional
+	@Query(value = "select * from am_monitor_currentfile t where t.name like %?1% and t.name like %?2% and t.pathname like %?4% order by t.updatetime desc limit ?3", nativeQuery = true)
+	public List<ActiveWishFile> queryProcessListByLimit(String workno, String chartno, int limit, String aM_MONITOR_ROOT2_DIRECTORY);
 }

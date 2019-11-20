@@ -11,7 +11,7 @@ import com.txl.activewish.ActiveWish.util.LogUtil;
 import com.txl.activewish.ActiveWish.util.PropertiesUtil;
 
 /**
- * @ClassName: ActiveMessageController
+ * @ClassName: AllFilesController
  * @Description: TODO(全量文件控制器，指挥调度程序运行)
  * @author tianxuanling
  * @date 2017-11-1 上午11:51:19
@@ -35,6 +35,7 @@ public class AllFilesController {
 
 				allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT_DIRECTORY);
 				allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT1_DIRECTORY);
+				allFilesService.doAllFiles(PropertiesUtil.AM_MONITOR_ROOT2_DIRECTORY);
 				allFilesService.doAllFilesReverse();
 				
 				LogUtil.initLogContext().info("全文件检测完成!");

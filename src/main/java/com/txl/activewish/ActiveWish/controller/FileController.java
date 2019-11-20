@@ -52,7 +52,7 @@ public class FileController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "workno", value = "工号", required = false, dataType = "String", defaultValue = ""),
 			@ApiImplicitParam(name = "chartno", value = "图号", required = false, dataType = "String", defaultValue = ""),
-			@ApiImplicitParam(name = "limit", value = "查询前N条数据", required = true, dataType = "int", defaultValue = "200") })
+			@ApiImplicitParam(name = "limit", value = "查询前N条数据", required = true, dataType = "int", allowableValues = "range[1,200]", defaultValue = "200") })
 	@RequestMapping(value = "/queryBoxListByLimit", method = RequestMethod.POST)
 	public Map queryBoxListByLimit(String workno, String chartno, int limit) {
 		List list = fileService.queryBoxListByLimit(workno, chartno, 200);
@@ -68,6 +68,19 @@ public class FileController {
 	@RequestMapping(value = "/queryMarkListByWorknoOrChartno", method = RequestMethod.POST)
 	public Map queryMarkListByWorknoOrChartno(String workno, String chartno) {
 		List list = fileService.queryMarkListByWorknoOrChartno(workno, chartno);
+		Map map = new HashMap();
+		map.put("datas", list);
+		return map;
+	}
+	
+	@ApiOperation(value = "工艺院综合查询，按照修改时间排序，默认查询前200条", notes = "工艺院综合查询，按照修改时间排序，默认显示前200条")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "workno", value = "工号", required = false, dataType = "String", defaultValue = ""),
+			@ApiImplicitParam(name = "chartno", value = "图号", required = false, dataType = "String", defaultValue = ""),
+			@ApiImplicitParam(name = "limit", value = "查询前N条数据", required = true, dataType = "int", allowableValues = "range[1,200]", defaultValue = "200") })
+	@RequestMapping(value = "/queryProcessListByLimit", method = RequestMethod.POST)
+	public Map queryProcessListByLimit(String workno, String chartno, int limit) {
+		List list = fileService.queryProcessListByLimit(workno, chartno, 200);
 		Map map = new HashMap();
 		map.put("datas", list);
 		return map;

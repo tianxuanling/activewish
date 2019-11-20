@@ -20,8 +20,8 @@ import com.txl.activewish.ActiveWish.util.StringUtil;
 import com.txl.activewish.ActiveWish.util.UUIDUtil;
 
 /**
- * @ClassName: ActiveMessageDao
- * @Description: TODO(ActiveMessage数据库操作)
+ * @ClassName: ActiveWishDao
+ * @Description: TODO(ActiveWish数据库操作)
  * @author tianxuanling
  * @date 2017-11-1 下午2:41:34
  */
